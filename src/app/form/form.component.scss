@@ -1,0 +1,23 @@
+.supplier-check-form {
+    min-width: 150px;
+    min-height: 300px;
+    width: 100%;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.submit-btn {
+    display: block;
+    margin: 0 auto;
+}
+
+h1 {
+    text-align: center;
+}
+
+
+td ~ td {
+    padding-left: 10px;
+}

@@ -1,0 +1,35 @@
+<h1 >Supplier Check Form</h1>
+<form  class="supplier-check-form" [formGroup]="supplierCkeckForm">
+    <mat-form-field class="full-width" appearance="fill">
+        <mat-label>Company </mat-label>
+        <input matInput  formControlName="companyName">
+    </mat-form-field>
+    
+    <table class="full-width" cellspacing="0"><tr>
+        <td><mat-form-field class="full-width" appearance="fill">
+            <mat-label>First name</mat-label>
+            <input matInput formControlName="firstName">
+        </mat-form-field></td>
+        <td><mat-form-field class="full-width" appearance="fill">
+            <mat-label>Last Name</mat-label>
+            <input matInput formControlName="lastName">
+        </mat-form-field></td>
+    </tr></table>
+    
+    <mat-form-field appearance="fill" class="full-width"> 
+        <mat-label >Email</mat-label>
+        <input matInput formControlName="email">
+        <mat-error *ngIf="supplierCkeckForm.controls.email.hasError('email') && !supplierCkeckForm.controls.email.hasError('required')">
+            Invalid Email
+        </mat-error>
+    </mat-form-field>
+    
+    <mat-form-field appearance="fill" class="full-width"> 
+        <mat-label>ЄДРПОУ</mat-label>
+        <input matInput formControlName="edrpo">
+        <mat-error *ngIf="supplierCkeckForm.controls.edrpo.hasError('pattern') && !supplierCkeckForm.controls.edrpo.hasError('required')">
+            ЄДРПОУ must contains 8 numbers!
+        </mat-error>
+    </mat-form-field>
+</form>
+<button type="submit" mat-raised-button color="primary" [disabled]="!supplierCkeckForm.valid" class="submit-btn" (click)="sendForm()">Submit</button>
