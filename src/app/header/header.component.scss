@@ -1,0 +1,19 @@
+.header {
+  display: flex;
+  height: 80px;
+  max-width: 1000px;
+  width: 100%;
+
+  margin: 0 auto;
+  margin-bottom: 30px;
+  margin-top: 10px;
+
+  .brand {
+    align-self: start;
+
+    img {
+      height: 90px;
+      width: 190px;
+    }
+  }
+}

@@ -30,7 +30,6 @@ export class ApiService {
 
   sendSupplierForm(supplier: Supplier): Observable<Supplier> {
     return this.http
-      .post<Supplier>(this.baseUrl, supplier)
-      .pipe(catchError(this.handleError));
+      .post<Supplier>(this.baseUrl, supplier);
   }
 }

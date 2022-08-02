@@ -16,7 +16,6 @@ import { ApiService } from '../api.service';
 export class FormComponent implements OnInit {
   horizontalPos: MatSnackBarHorizontalPosition = 'center';
   verticalPos: MatSnackBarVerticalPosition = 'top';
-  status: boolean = true;
 
   constructor(private _snackBar: MatSnackBar, private apiService: ApiService) {}
 
@@ -38,23 +37,27 @@ export class FormComponent implements OnInit {
   ngOnInit(): void {}
 
   sendForm() {
-    console.log(this.supplierCkeckForm.value);
     const supplier = new Supplier(this.supplierCkeckForm.value);
     this.apiService.sendSupplierForm(supplier).subscribe(
-      (data) => console.log(data),
-      (error) => console.error(error)
-    );
-    // this.supplierCkeckForm.reset();
-    if (this.status) {
-      this._snackBar.open('Form successfully send!', 'OK', {
-        horizontalPosition: this.horizontalPos,
-        verticalPosition: this.verticalPos,
-      });
-    } else {
-      this._snackBar.open('Something went wrong. Try again!', 'OK', {
-        horizontalPosition: this.horizontalPos,
-        verticalPosition: this.verticalPos,
-      });
-    }
+      (data) => {
+        if (data){
+          this._snackBar.open('Form successfully send!', 'OK', {
+            horizontalPosition: this.horizontalPos,
+            verticalPosition: this.verticalPos,
+          });
+          this.supplierCkeckForm.reset();
+        }
+
+      },
+      (error) => {
+        if (error){
+          this._snackBar.open('Something went wrong. Try again!', 'OK', {
+            horizontalPosition: this.horizontalPos,
+            verticalPosition: this.verticalPos,
+          });
+          this.supplierCkeckForm.reset();
+        }
+    });
+    
   }
 }
